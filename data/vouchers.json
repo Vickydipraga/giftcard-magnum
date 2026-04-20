@@ -1,0 +1,533 @@
+{
+  "meta": {
+    "validFrom": "2026-04-20",
+    "validTo": "2026-06-30",
+    "amount": 60000,
+    "currency": "ARS"
+  },
+  "vouchers": [
+    {
+      "code": "MAGNUM-7QX4N9K-2F",
+      "customerName": "Ricardo Andrade",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-L8V2P6R-9M",
+      "customerName": "Alejandro Arce",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-X3D7W1J-4T",
+      "customerName": "Fabian Barreda",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-9KZ5H2Q-8L",
+      "customerName": "Eduardo Benaglia",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-B4N8Y7C-3P",
+      "customerName": "Gaston Benaglia",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-T6R1M9X-5V",
+      "customerName": "Luciana Benaglia",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-P2J7L4D-8K",
+      "customerName": "Gonzalo Cabrera",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-H9W3Q6B-1R",
+      "customerName": "Carlos Cansina",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-F5X8T2N-7Z",
+      "customerName": "Benjamin Capdevila",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-C7M1V9L-4H",
+      "customerName": "Maximiliano Castaneira",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-R4P8K3Y-6J",
+      "customerName": "Pablo Celayes",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-N6Q2X7F-9D",
+      "customerName": "Julia Celayes",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-W1T5H8P-3C",
+      "customerName": "Diego Checa",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-Y8L4R2M-7Q",
+      "customerName": "Federico Checa",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-D3V9N6K-5X",
+      "customerName": "Roman Checa",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-K7B1W4T-8P",
+      "customerName": "Franco Contreras",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-M2F8Q5R-1Y",
+      "customerName": "Jose Maria Contreras",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-Q9X3C7L-6N",
+      "customerName": "Eric Coronda",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-V4H2P8D-9K",
+      "customerName": "Juan Carlos Daniele",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-J6N1T5W-3M",
+      "customerName": "Martin Depetris",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-Z8R4X2F-7L",
+      "customerName": "Cristian Dominguez",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-1P7K9VQ-5H",
+      "customerName": "Mauro Dominguez",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-4T2M8YB-6R",
+      "customerName": "Sergio Dominguez",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-6W9D3LJ-2X",
+      "customerName": "Gaston Esper",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-VK",
+      "customerName": "Victor Ernesto",
+      "customerPhone": "",
+      "status": "redeemed",
+      "redeemedAt": "2026-04-20T19:11:00.166Z",
+      "redeemedRestaurant": "del_mon",
+      "notificationId": null,
+      "redemptionToken": "85cba339-d36a-427c-9dd2-350e214ee803"
+    },
+    {
+      "code": "MAGNUM-8C5Q1NZ-4P",
+      "customerName": "Juliana Fernandez",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-2H7R4XF-9T",
+      "customerName": "Sebastian Galvez",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-5L1V8KM-3Q",
+      "customerName": "Nicolas Garay",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-9Y3P6WC-7N",
+      "customerName": "Juan Esteban Gauna",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-3N8T2QH-1V",
+      "customerName": "Omar Gonzalez",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-7D4X9LR-5K",
+      "customerName": "Alejandro Grillo",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-X1M6F8P-2Z",
+      "customerName": "Sergio Grillo",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-B9Q5T3N-4W",
+      "customerName": "Daniel Heredia",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-H2V7K1Y-8D",
+      "customerName": "Luis Herrera",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-R8L4C6X-9P",
+      "customerName": "Juan Manuel Jurmussi",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-F1W9M2Q-7T",
+      "customerName": "Emanuel Luduena",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-T3P8D5V-6N",
+      "customerName": "Romina Macchi",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-K5X2R7L-1H",
+      "customerName": "Raul Maldonado",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-N4Y8F1C-3Q",
+      "customerName": "Karina Manzanelli",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-W7Q3M9T-5J",
+      "customerName": "Cesar Marcuzzi",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-D2L6X4P-8R",
+      "customerName": "Luis Maria Maritano",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-P8H1V7N-2K",
+      "customerName": "Jonathan Melgarejo",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-Y5T9B3Q-4F",
+      "customerName": "Pablo Merlo",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-C1R6W8M-7X",
+      "customerName": "Matias Molinari",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-M9D2K5L-3V",
+      "customerName": "Santiago Montes De Oca",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-Q4N7P1T-8H",
+      "customerName": "Martin Montes",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-V6X3F9R-2C",
+      "customerName": "Nicolas Nasr",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-J1Y8Q4W-5N",
+      "customerName": "Jorge Ottonello",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-Z7M2L6D-9P",
+      "customerName": "Gabriel Peschiutta",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-2K5T8XH-1R",
+      "customerName": "Paul Ponce",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-6P9V3C7-4Q",
+      "customerName": "Javier Pugni",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-8R1N4MZ-5T",
+      "customerName": "Guadalupe Roldan",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-3W7F2LQ-9K",
+      "customerName": "Eduardo Sarabia",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-5X8D1P6-2V",
+      "customerName": "Leonel Tello",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-9T4H7Y3-8M",
+      "customerName": "Soledad Tissera",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-1L6Q9P5-4X",
+      "customerName": "Sergio Veron",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-4V2N8K1-7F",
+      "customerName": "Gustavo Virzi",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    },
+    {
+      "code": "MAGNUM-7M5C3T9-6P",
+      "customerName": "Julio Zalazar",
+      "customerPhone": "",
+      "status": "active",
+      "redeemedAt": null,
+      "redeemedRestaurant": null,
+      "notificationId": null
+    }
+  ]
+}
