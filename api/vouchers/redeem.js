@@ -1,15 +1,20 @@
-const crypto = require("crypto");
+const fs = require("fs");
+const path = require("path");
 const { readJsonBody, sendJson } = require("../../lib/http");
 const {
   RESTAURANTS,
   getTodayIso,
   isWithinValidity,
-  loadData,
   loadEnvFile,
   normalizeCode,
-  publicVoucher,
-  saveData
+  publicVoucher
 } = require("../../lib/vouchers");
+
+const DATA_FILE = path.join(__dirname, "..", "..", "data", "vouchers.json");
+
+function loadStaticData() {
+  return JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+}
 
 module.exports = async function handler(req, res) {
   loadEnvFile();
@@ -23,8 +28,7 @@ module.exports = async function handler(req, res) {
     const body = await readJsonBody(req);
     const code = normalizeCode(body.code);
     const restaurantKey = String(body.restaurant || "").trim();
-    const fallbackCustomerName = String(body.customerName || "").trim();
-    const data = await loadData();
+    const data = loadStaticData();
     const voucher = data.vouchers.find((item) => item.code === code);
 
     if (!voucher) {
@@ -62,33 +66,14 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    if (!voucher.customerName && fallbackCustomerName) {
-      voucher.customerName = fallbackCustomerName;
-    }
-
-    voucher.status = "redeemed";
-    voucher.redeemedAt = new Date().toISOString();
-    voucher.redeemedRestaurant = restaurantKey;
-    voucher.redemptionToken = crypto.randomUUID();
-
-    let persistenceWarning = null;
-
-    try {
-      await saveData(data);
-    } catch (error) {
-      persistenceWarning = error.message;
-      console.error("Voucher persistence warning:", error);
-    }
-
     sendJson(res, 200, {
       ok: true,
-      message: "Voucher canjeado con exito.",
+      message: "Voucher validado con exito.",
       voucher: publicVoucher(voucher, data.meta),
       notification: {
         sent: false,
         reason: "manual_whatsapp_redirect"
-      },
-      persistenceWarning
+      }
     });
   } catch (error) {
     sendJson(res, 400, {
