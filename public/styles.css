@@ -1,0 +1,679 @@
+:root {
+  --bg: #f6efe4;
+  --bg-strong: #e5d1b7;
+  --card: rgba(255, 252, 247, 0.72);
+  --card-strong: #fffaf4;
+  --ink: #26140e;
+  --muted: #6f554c;
+  --accent: #8f1d14;
+  --accent-2: #d38a2f;
+  --ok: #1e6b45;
+  --warn: #8a5c08;
+  --shadow: 0 30px 70px rgba(58, 28, 18, 0.15);
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(211, 138, 47, 0.35), transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(143, 29, 20, 0.28), transparent 25%),
+    linear-gradient(135deg, #f7f0e6 0%, #f0decb 50%, #ead3ba 100%);
+}
+
+.shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 42px 0 64px;
+}
+
+.hero {
+  margin-bottom: 28px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.hero-copy,
+.panel {
+  backdrop-filter: blur(14px);
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow);
+}
+
+.hero-copy {
+  border-radius: var(--radius-xl);
+  padding: 24px 26px 28px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.76rem;
+  color: var(--accent);
+  font-weight: 800;
+  align-self: flex-start;
+  text-align: left;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  line-height: 0.95;
+}
+
+h1 {
+  font-size: clamp(3.4rem, 7vw, 5.6rem);
+  margin-bottom: 0;
+  max-width: none;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+h3 {
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+}
+
+.lead {
+  max-width: 28ch;
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--muted);
+}
+
+.meta-pill {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 2px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(38, 20, 14, 0.06);
+  font-size: 0.94rem;
+}
+
+.hero-card-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+
+.hero-experience {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.hero-experience-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-experience-text {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.hero-experience-text--accent {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.panel {
+  border-radius: 32px;
+  padding: 28px;
+}
+
+.brand-strip {
+  position: relative;
+  overflow: hidden;
+  margin-top: 6px;
+  padding: 18px 0;
+}
+
+.brand-track {
+  display: flex;
+  width: max-content;
+  animation: brand-marquee 28s linear infinite;
+}
+
+.brand-track-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 14px;
+}
+
+.brand-chip {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  color: #5d281c;
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.brand-chip::after {
+  content: "|";
+  margin-left: 24px;
+  color: rgba(93, 40, 28, 0.5);
+}
+
+.brand-strip-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 58px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.brand-strip-fade--left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(244, 231, 214, 0.98), rgba(244, 231, 214, 0));
+}
+
+.brand-strip-fade--right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(244, 231, 214, 0.98), rgba(244, 231, 214, 0));
+}
+
+.cta-redeem-button {
+  align-self: center;
+  min-width: min(100%, 260px);
+  background: linear-gradient(135deg, #27c45b, #0f7f34);
+  box-shadow: 0 16px 30px rgba(15, 127, 52, 0.28);
+}
+
+.selection-warning {
+  align-self: center;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: rgba(143, 29, 20, 0.12);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.support-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: center;
+  color: #7a584a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  font-size: 0.96rem;
+}
+
+.support-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #9f7a63;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 17, 12, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(680px, 100%);
+  max-height: min(92vh, 980px);
+  overflow: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(38, 20, 14, 0.08);
+  color: var(--ink);
+  box-shadow: none;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.voucher-form label,
+.redeem-box label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input {
+  width: 100%;
+  border: 1px solid rgba(38, 20, 14, 0.12);
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: rgba(255, 250, 244, 0.85);
+  color: var(--ink);
+}
+
+button {
+  border: 0;
+  border-radius: 16px;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, var(--accent), #5f130f);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+  box-shadow: 0 12px 24px rgba(95, 19, 15, 0.26);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.status-box {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}
+
+.status-box.info {
+  background: rgba(211, 138, 47, 0.16);
+  color: var(--warn);
+}
+
+.status-box.success {
+  background: rgba(30, 107, 69, 0.13);
+  color: var(--ok);
+}
+
+.status-box.error {
+  background: rgba(143, 29, 20, 0.12);
+  color: var(--accent);
+}
+
+.selection,
+.flyer {
+  margin-top: 28px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+}
+
+.customer-badge {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(38, 20, 14, 0.06);
+  font-weight: 700;
+  width: fit-content;
+}
+
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.restaurant-grid--hero {
+  margin-top: 0;
+}
+
+.restaurant-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: end;
+  gap: 10px;
+  min-height: 240px;
+  padding: 24px;
+  border-radius: 24px;
+  text-align: left;
+  background-size: cover;
+  background-position: center;
+  color: #fff7f0;
+}
+
+.restaurant-card--hero {
+  min-height: 240px;
+  box-shadow: var(--shadow);
+}
+
+.restaurant-card--botanas {
+  background-image:
+    linear-gradient(180deg, rgba(25, 10, 6, 0.14), rgba(25, 10, 6, 0.82)),
+    url("https://instagram.fcor2-1.fna.fbcdn.net/v/t51.82787-15/538210434_18404687845112657_573376199322552282_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ig_cache_key=MzcwNjk1NjQ4NzE1ODAxNDcyMA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM0Ni5zZHIuQzMifQ%3D%3D&_nc_ohc=8HlWw0ro_jwQ7kNvwHXp923&_nc_oc=Adocsgef8yQuN_UbF7BYVaxVVyBqnd_uBmShakiQ5dGnDQYRC6Vq-nJH45WVSdCSTmA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fcor2-1.fna&_nc_gid=6Jo5E4XpnzYlKCUU-Ygw0g&_nc_ss=7a32e&oh=00_Af3XOT4kpZZ49q4TU0l6rbcqerEB20m_PAIlHgcoFgHatw&oe=69EC394D");
+  background-position: center;
+  background-size: cover;
+}
+
+.restaurant-card--delmon {
+  background-image:
+    linear-gradient(180deg, rgba(18, 14, 12, 0.14), rgba(18, 14, 12, 0.82)),
+    url("https://instagram.fcor2-1.fna.fbcdn.net/v/t51.75761-15/491444318_18320154820206823_6351349520449708416_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=MzYxNTY0ODg2NzE0NTkyNjEyMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM0NS5zZHIuQzMifQ%3D%3D&_nc_ohc=EfzLDxtGThwQ7kNvwHsnAOl&_nc_oc=AdoZXS0n1qeL-0plZE2A6XvlxGgEE_Fe_TloJ9l5XHW5mSMVAC5MKe0lkJCU_mStKTo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fcor2-1.fna&_nc_gid=Kmne01tSL2DYksDqvZUjig&_nc_ss=7a32e&oh=00_Af3YL845Hm1jcxejLdUTK2tn5w-pZwrOXsLgfOLU8v51Ug&oe=69EC3D51");
+  background-position: center;
+  background-size: cover;
+}
+
+.restaurant-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(17, 9, 7, 0.22) 46%, rgba(17, 9, 7, 0.7) 100%);
+  pointer-events: none;
+}
+
+.restaurant-card.active {
+  outline: 4px solid #39ff72;
+  outline-offset: -4px;
+  box-shadow:
+    0 0 0 3px rgba(57, 255, 114, 0.22),
+    0 0 24px rgba(57, 255, 114, 0.55),
+    var(--shadow);
+}
+
+.restaurant-name {
+  position: relative;
+  z-index: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.25rem;
+  text-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+}
+
+.restaurant-desc {
+  position: relative;
+  z-index: 1;
+  max-width: 26ch;
+  color: rgba(255, 247, 240, 0.88);
+  font-weight: 500;
+}
+
+.flyer-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
+  border-radius: 32px;
+  min-height: 320px;
+  background: linear-gradient(145deg, #1c0907 0%, #5c1812 52%, #d38a2f 100%);
+  box-shadow: var(--shadow);
+}
+
+.flyer-background::before,
+.flyer-background::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.flyer-background::before {
+  width: 320px;
+  height: 320px;
+  top: -60px;
+  right: -80px;
+}
+
+.flyer-background::after {
+  width: 200px;
+  height: 200px;
+  bottom: -50px;
+  left: -30px;
+}
+
+.flyer-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  padding: 32px;
+  color: #fff7f0;
+}
+
+.flyer-brand {
+  margin: 0;
+  letter-spacing: 0.28em;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.flyer-amount {
+  margin: 18px 0 8px;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  font-weight: 800;
+}
+
+.flyer-text {
+  margin: 0;
+  max-width: 24ch;
+  font-size: 1.08rem;
+}
+
+.flyer-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 0.95rem;
+  color: rgba(255, 247, 240, 0.84);
+}
+
+.redeem-box {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 250, 244, 0.66);
+}
+
+.redeem-box button {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes brand-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .row,
+  .flyer-meta {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .shell {
+    width: min(100% - 20px, 1120px);
+    padding-top: 18px;
+  }
+
+  .hero-copy,
+  .panel {
+    padding: 22px;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 10vw, 4.6rem);
+  }
+
+  .modal {
+    padding: 14px;
+    align-items: end;
+  }
+
+  .brand-chip {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shell {
+    width: min(100% - 12px, 1120px);
+  }
+
+  .hero-copy,
+  .panel {
+    padding: 18px;
+  }
+
+  .cta-redeem-button {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(2.55rem, 8.8vw, 3.4rem);
+    line-height: 0.98;
+  }
+
+  .lead {
+    max-width: 22ch;
+    font-size: 0.98rem;
+  }
+
+  .meta-pill {
+    padding: 8px 14px;
+    font-size: 0.88rem;
+  }
+
+  .hero-experience-text {
+    max-width: 28ch;
+    font-size: 0.95rem;
+  }
+
+  .restaurant-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .restaurant-card--hero {
+    min-height: 240px;
+    padding: 16px;
+  }
+
+  .restaurant-name {
+    font-size: 1.55rem;
+  }
+
+  .restaurant-desc {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .brand-strip {
+    padding: 14px 0;
+  }
+
+  .brand-chip {
+    padding: 6px 8px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.35rem;
+  }
+}

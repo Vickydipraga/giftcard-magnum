@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voucher Magnum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Gift Card Exclusiva</p>
+          <h1>Cajea tu Voucher<br />Magnum</h1>
+          <p class="lead">
+            Ingresa tu codigo unico, elige tu restaurante y activa tu beneficio
+            de <strong>$60.000</strong> en consumicion.
+          </p>
+          <div class="meta-pill">
+            Valido para el mes de Mayo y Junio
+          </div>
+          <div class="hero-experience">
+            <div class="hero-experience-head">
+              <p class="hero-experience-text hero-experience-text--accent">
+                Elegi un restaurante
+              </p>
+            </div>
+            <div class="restaurant-grid restaurant-grid--hero">
+              <button
+                class="restaurant-card restaurant-card--hero restaurant-card--botanas"
+                data-restaurant="de_botanas"
+                type="button"
+              >
+                <span class="restaurant-overlay"></span>
+                <span class="restaurant-name">De Botanas</span>
+                <span class="restaurant-desc">Luis de Tejeda 4047, Cerro de las Rosas</span>
+              </button>
+              <button
+                class="restaurant-card restaurant-card--hero restaurant-card--delmon"
+                data-restaurant="del_mon"
+                type="button"
+              >
+                <span class="restaurant-overlay"></span>
+                <span class="restaurant-name">Del Mon</span>
+                <span class="restaurant-desc">Luis de Tejeda 4555, Cerro de las Rosas</span>
+              </button>
+            </div>
+            <button id="openRedeemModalButton" class="cta-redeem-button" type="button">
+              Canjear
+            </button>
+            <div id="selectionWarning" class="selection-warning hidden" aria-live="polite">
+              Para continuar selecciona un restaurante
+            </div>
+            <a
+              class="support-link"
+              href="https://wa.me/5493513578562?text=Hola%2C%20tengo%20problemas%20para%20canjear%20mi%20voucher."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="support-icon" aria-hidden="true">W</span>
+              <span>Tengo problemas para canjear mi voucher</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="brand-strip" aria-label="Locales adheridos">
+        <div class="brand-strip-fade brand-strip-fade--left"></div>
+        <div class="brand-strip-fade brand-strip-fade--right"></div>
+        <div class="brand-track">
+          <div class="brand-track-group">
+            <div class="brand-chip">Cantina IPEF</div>
+            <div class="brand-chip">Cantina Turismo</div>
+            <div class="brand-chip">Vita Fresh</div>
+            <div class="brand-chip">Market</div>
+            <div class="brand-chip">De Botanas</div>
+            <div class="brand-chip">Del Mon</div>
+            <div class="brand-chip">Pasteleria Valentina Visconti</div>
+            <div class="brand-chip">Catering Luciano Visconti</div>
+            <div class="brand-chip">Napolitanos</div>
+          </div>
+          <div class="brand-track-group" aria-hidden="true">
+            <div class="brand-chip">Cantina IPEF</div>
+            <div class="brand-chip">Cantina Turismo</div>
+            <div class="brand-chip">Vita Fresh</div>
+            <div class="brand-chip">Market</div>
+            <div class="brand-chip">De Botanas</div>
+            <div class="brand-chip">Del Mon</div>
+            <div class="brand-chip">Pasteleria Valentina Visconti</div>
+            <div class="brand-chip">Catering Luciano Visconti</div>
+            <div class="brand-chip">Napolitanos</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div id="redeemModal" class="modal hidden" aria-hidden="true">
+      <div id="modalBackdrop" class="modal-backdrop"></div>
+      <section class="panel modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button id="closeRedeemModalButton" class="modal-close" type="button" aria-label="Cerrar">
+          ×
+        </button>
+
+        <form id="voucherForm" class="voucher-form">
+          <label id="modalTitle" for="code">Codigo del voucher</label>
+          <div class="row">
+            <input
+              id="code"
+              name="code"
+              type="text"
+              placeholder="Ej: MAGNUM-ANA-2026"
+              autocomplete="off"
+              required
+            />
+            <button type="submit">Validar</button>
+          </div>
+          <p class="hint">
+            Cada codigo es unico y solo puede canjearse una vez.
+          </p>
+        </form>
+
+        <div id="statusBox" class="status-box hidden" aria-live="polite"></div>
+        <p id="customerBadge" class="customer-badge hidden"></p>
+        <p id="selectedRestaurantBadge" class="customer-badge hidden"></p>
+
+        <section id="flyerSection" class="flyer hidden">
+          <div class="flyer-top">
+            <p class="eyebrow">Voucher listo</p>
+            <h2>Tu beneficio esta preparado</h2>
+          </div>
+
+          <article class="flyer-card">
+            <div class="flyer-background"></div>
+            <div class="flyer-content">
+              <p class="flyer-brand">MAGNUM</p>
+              <h3 id="flyerRestaurant">De Botanas</h3>
+              <p class="flyer-amount">$60.000</p>
+              <p class="flyer-text">de consumicion disponible para canjear</p>
+              <div class="flyer-meta">
+                <span id="flyerCustomer">Cliente exclusivo</span>
+                <span>Valido mayo y junio 2026</span>
+              </div>
+            </div>
+          </article>
+
+          <div class="redeem-box">
+            <button id="redeemButton" type="button">Confirmar canje</button>
+            <p class="hint">
+              Al confirmar, el voucher se desactiva y se envia un aviso por WhatsApp.
+            </p>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
