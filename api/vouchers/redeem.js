@@ -71,7 +71,14 @@ module.exports = async function handler(req, res) {
     voucher.redeemedRestaurant = restaurantKey;
     voucher.redemptionToken = crypto.randomUUID();
 
-    await saveData(data);
+    let persistenceWarning = null;
+
+    try {
+      await saveData(data);
+    } catch (error) {
+      persistenceWarning = error.message;
+      console.error("Voucher persistence warning:", error);
+    }
 
     sendJson(res, 200, {
       ok: true,
@@ -80,7 +87,8 @@ module.exports = async function handler(req, res) {
       notification: {
         sent: false,
         reason: "manual_whatsapp_redirect"
-      }
+      },
+      persistenceWarning
     });
   } catch (error) {
     sendJson(res, 400, {
