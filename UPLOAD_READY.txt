@@ -1,0 +1,27 @@
+VERSION LISTA PARA GITHUB Y VERCEL
+
+Sube esta carpeta completa a GitHub, excepto:
+- .env
+
+Archivos y carpetas que SI deben quedar en el repo:
+- api/
+- data/
+- lib/
+- public/
+- scripts/
+- .env.example
+- .gitignore
+- package.json
+- README.md
+- server.js
+- vercel.json
+
+Variables necesarias en Vercel:
+- REDIS_URL
+- PUBLIC_WHATSAPP_NUMBER=5493513578562
+
+Archivos clave corregidos:
+- api/vouchers/redeem.js
+- lib/vouchers.js
+
+Si Vercel sigue mostrando una version vieja, forzar redeploy despues de subir todo.

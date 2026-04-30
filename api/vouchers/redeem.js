@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const { readJsonBody, sendJson } = require("../../lib/http");
 const {
   RESTAURANTS,
@@ -6,7 +7,8 @@ const {
   loadData,
   loadEnvFile,
   normalizeCode,
-  publicVoucher
+  publicVoucher,
+  saveData
 } = require("../../lib/vouchers");
 
 module.exports = async function handler(req, res) {
@@ -21,6 +23,7 @@ module.exports = async function handler(req, res) {
     const body = await readJsonBody(req);
     const code = normalizeCode(body.code);
     const restaurantKey = String(body.restaurant || "").trim();
+    const fallbackCustomerName = String(body.customerName || "").trim();
     const data = await loadData();
     const voucher = data.vouchers.find((item) => item.code === code);
 
@@ -59,14 +62,33 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    if (!voucher.customerName && fallbackCustomerName) {
+      voucher.customerName = fallbackCustomerName;
+    }
+
+    voucher.status = "redeemed";
+    voucher.redeemedAt = new Date().toISOString();
+    voucher.redeemedRestaurant = restaurantKey;
+    voucher.redemptionToken = crypto.randomUUID();
+
+    let persistenceWarning = null;
+
+    try {
+      await saveData(data);
+    } catch (error) {
+      persistenceWarning = error.message;
+      console.error("Voucher persistence warning:", error);
+    }
+
     sendJson(res, 200, {
       ok: true,
-      message: "Voucher validado con exito.",
+      message: "Voucher canjeado con exito.",
       voucher: publicVoucher(voucher, data.meta),
       notification: {
         sent: false,
         reason: "manual_whatsapp_redirect"
-      }
+      },
+      persistenceWarning
     });
   } catch (error) {
     sendJson(res, 400, {
