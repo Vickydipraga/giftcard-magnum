@@ -9,5 +9,8 @@
     "generate:vouchers": "node scripts/generate-vouchers.js",
     "vercel-build": "echo Ready for Vercel"
   },
+  "dependencies": {
+    "redis": "^4.7.0"
+  },
   "license": "MIT"
 }
