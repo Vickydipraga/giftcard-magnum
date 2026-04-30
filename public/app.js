@@ -34,11 +34,6 @@ async function loadMeta() {
   }
 }
 
-function formatDate(isoDate) {
-  if (!isoDate) return "";
-  return new Intl.DateTimeFormat("es-AR", { dateStyle: "short" }).format(new Date(`${isoDate}T00:00:00`));
-}
-
 function showStatus(type, message) {
   statusBox.textContent = message;
   statusBox.className = `status-box ${type}`;
@@ -63,21 +58,6 @@ function showSelectionWarning() {
   selectionWarning.classList.remove("hidden");
 }
 
-function resetVoucherFlow() {
-  state.voucher = null;
-  state.selectedRestaurant = null;
-  codeInput.value = "";
-  flyerSection.classList.add("hidden");
-  customerBadge.classList.add("hidden");
-  selectedRestaurantBadge.classList.add("hidden");
-  statusBox.className = "status-box hidden";
-  statusBox.textContent = "";
-  hideSelectionWarning();
-  restaurantButtons.forEach((button) => button.classList.remove("active"));
-  closeRedeemModal();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
 function getSelectedRestaurantButton() {
   return restaurantButtons.find((button) => button.classList.contains("active")) || null;
 }
@@ -97,6 +77,39 @@ function syncSelectedRestaurantFromUi() {
   return activeButton;
 }
 
+function resetModalState() {
+  state.voucher = null;
+  codeInput.value = "";
+  flyerSection.classList.add("hidden");
+  customerBadge.classList.add("hidden");
+  selectedRestaurantBadge.classList.add("hidden");
+  statusBox.className = "status-box hidden";
+  statusBox.textContent = "";
+  redeemButton.disabled = false;
+  redeemButton.textContent = "Confirmar canje";
+
+  if (state.selectedRestaurant) {
+    syncSelectedRestaurantFromUi();
+  }
+}
+
+function resetVoucherFlow() {
+  resetModalState();
+  state.selectedRestaurant = null;
+  hideSelectionWarning();
+  restaurantButtons.forEach((button) => button.classList.remove("active"));
+  closeRedeemModal();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function fillVoucherUI(voucher) {
+  customerBadge.textContent = voucher.customerName
+    ? `Cliente: ${voucher.customerName}`
+    : "Voucher sin nombre precargado";
+  customerBadge.classList.remove("hidden");
+  flyerCustomer.textContent = voucher.customerName || "Cliente por confirmar";
+}
+
 function buildWhatsappUrl(voucher) {
   const restaurantName = flyerRestaurant.textContent.trim();
   const customerName = voucher.customerName || "";
@@ -110,44 +123,17 @@ function buildWhatsappUrl(voucher) {
   return `https://wa.me/${state.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-async function redeemAndRedirectToWhatsapp(voucher) {
+function redirectToWhatsapp(voucher) {
   if (!state.whatsappNumber) {
     showStatus("error", "Falta configurar el numero de WhatsApp.");
+    redeemButton.disabled = false;
+    redeemButton.textContent = "Confirmar canje";
     return;
   }
 
-  try {
-    showStatus("info", "Reservando voucher y abriendo WhatsApp...");
-
-    await postJson("/api/vouchers/redeem", {
-      code: voucher.code,
-      restaurant: state.selectedRestaurant,
-      customerName: voucher.customerName || ""
-    });
-
-    showStatus("success", "Codigo valido. Te redirigimos a WhatsApp...");
-    window.open(buildWhatsappUrl(voucher), "_blank");
-    resetVoucherFlow();
-  } catch (error) {
-    showStatus("error", error.message);
-  }
-}
-
-function resetSelection() {
-  state.selectedRestaurant = null;
-  restaurantButtons.forEach((button) => button.classList.remove("active"));
-  flyerSection.classList.add("hidden");
-  selectedRestaurantBadge.classList.add("hidden");
-  redeemButton.disabled = false;
-  redeemButton.textContent = "Confirmar canje";
-}
-
-function fillVoucherUI(voucher) {
-  customerBadge.textContent = voucher.customerName
-    ? `Cliente: ${voucher.customerName}`
-    : "Voucher sin nombre precargado";
-  customerBadge.classList.remove("hidden");
-  flyerCustomer.textContent = voucher.customerName || "Cliente por confirmar";
+  showStatus("success", "Te redirigimos a WhatsApp...");
+  window.open(buildWhatsappUrl(voucher), "_blank");
+  resetVoucherFlow();
 }
 
 async function postJson(url, payload) {
@@ -183,14 +169,17 @@ form.addEventListener("submit", async (event) => {
 
     state.voucher = data.voucher;
     fillVoucherUI(data.voucher);
+
     if (state.selectedRestaurant) {
-      await redeemAndRedirectToWhatsapp(data.voucher);
+      flyerSection.classList.remove("hidden");
+      showStatus("success", "Revisa tu voucher y confirma el canje cuando estes listo.");
     } else {
       showStatus("success", "Codigo valido. Ahora elige uno de los restaurantes.");
     }
   } catch (error) {
     state.voucher = null;
     customerBadge.classList.add("hidden");
+
     if (error.status === 404) {
       showStatus("error", "El codigo no existe.");
       return;
@@ -204,8 +193,6 @@ form.addEventListener("submit", async (event) => {
     showStatus("error", error.message);
   }
 });
-
-loadMeta();
 
 restaurantButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -231,45 +218,38 @@ openRedeemModalButton.addEventListener("click", () => {
     showSelectionWarning();
     return;
   }
+
+  resetModalState();
+  syncSelectedRestaurantFromUi();
   openRedeemModal();
 });
 
-closeRedeemModalButton.addEventListener("click", closeRedeemModal);
-modalBackdrop.addEventListener("click", closeRedeemModal);
+closeRedeemModalButton.addEventListener("click", () => {
+  closeRedeemModal();
+  resetModalState();
+});
+
+modalBackdrop.addEventListener("click", () => {
+  closeRedeemModal();
+  resetModalState();
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !redeemModal.classList.contains("hidden")) {
     closeRedeemModal();
+    resetModalState();
   }
 });
 
-redeemButton.addEventListener("click", async () => {
+redeemButton.addEventListener("click", () => {
   if (!state.voucher || !state.selectedRestaurant) {
     showStatus("error", "Valida tu codigo y selecciona un restaurante.");
     return;
   }
 
   redeemButton.disabled = true;
-  showStatus("info", "Procesando canje...");
-
-  try {
-    const data = await postJson("/api/vouchers/redeem", {
-      code: state.voucher.code,
-      restaurant: state.selectedRestaurant,
-      customerName: state.voucher.customerName || ""
-    });
-
-    state.voucher = data.voucher;
-    flyerCustomer.textContent = data.voucher.customerName || "Cliente confirmado";
-    showStatus(
-      "success",
-      data.notification.sent
-        ? "Voucher canjeado y aviso enviado por WhatsApp."
-        : "Voucher canjeado. Falta configurar Twilio para el aviso por WhatsApp."
-    );
-    redeemButton.textContent = "Voucher canjeado";
-  } catch (error) {
-    redeemButton.disabled = false;
-    showStatus("error", error.message);
-  }
+  redeemButton.textContent = "Abriendo WhatsApp...";
+  redirectToWhatsapp(state.voucher);
 });
+
+loadMeta();
