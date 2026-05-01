@@ -1,20 +1,14 @@
-const fs = require("fs");
-const path = require("path");
 const { readJsonBody, sendJson } = require("../../lib/http");
 const {
   RESTAURANTS,
   getTodayIso,
   isWithinValidity,
+  loadData,
   loadEnvFile,
   normalizeCode,
-  publicVoucher
+  publicVoucher,
+  saveData
 } = require("../../lib/vouchers");
-
-const DATA_FILE = path.join(__dirname, "..", "..", "data", "vouchers.json");
-
-function loadStaticData() {
-  return JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
-}
 
 module.exports = async function handler(req, res) {
   loadEnvFile();
@@ -28,7 +22,7 @@ module.exports = async function handler(req, res) {
     const body = await readJsonBody(req);
     const code = normalizeCode(body.code);
     const restaurantKey = String(body.restaurant || "").trim();
-    const data = loadStaticData();
+    const data = await loadData();
     const voucher = data.vouchers.find((item) => item.code === code);
 
     if (!voucher) {
@@ -66,9 +60,15 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    voucher.status = "redeemed";
+    voucher.redeemedAt = new Date().toISOString();
+    voucher.redeemedRestaurant = restaurantKey;
+
+    await saveData(data);
+
     sendJson(res, 200, {
       ok: true,
-      message: "Voucher validado con exito.",
+      message: "Voucher canjeado con exito.",
       voucher: publicVoucher(voucher, data.meta),
       notification: {
         sent: false,

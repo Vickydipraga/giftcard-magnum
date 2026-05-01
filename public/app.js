@@ -248,8 +248,29 @@ redeemButton.addEventListener("click", () => {
   }
 
   redeemButton.disabled = true;
-  redeemButton.textContent = "Abriendo WhatsApp...";
-  redirectToWhatsapp(state.voucher);
+  redeemButton.textContent = "Confirmando canje...";
+  showStatus("info", "Confirmando canje...");
+
+  postJson("/api/vouchers/redeem", {
+    code: state.voucher.code,
+    restaurant: state.selectedRestaurant
+  })
+    .then((data) => {
+      state.voucher = data.voucher;
+      redeemButton.textContent = "Abriendo WhatsApp...";
+      redirectToWhatsapp(data.voucher);
+    })
+    .catch((error) => {
+      redeemButton.disabled = false;
+      redeemButton.textContent = "Confirmar canje";
+
+      if (error.status === 409) {
+        showStatus("error", "Este voucher ya fue canjeado.");
+        return;
+      }
+
+      showStatus("error", error.message);
+    });
 });
 
 loadMeta();
