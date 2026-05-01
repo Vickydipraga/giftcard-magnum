@@ -423,7 +423,7 @@ button:disabled {
 .restaurant-card--botanas {
   background-image:
     linear-gradient(180deg, rgba(25, 10, 6, 0.14), rgba(25, 10, 6, 0.82)),
-    url("https://instagram.fcor2-1.fna.fbcdn.net/v/t51.82787-15/538210434_18404687845112657_573376199322552282_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ig_cache_key=MzcwNjk1NjQ4NzE1ODAxNDcyMA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM0Ni5zZHIuQzMifQ%3D%3D&_nc_ohc=8HlWw0ro_jwQ7kNvwHXp923&_nc_oc=Adocsgef8yQuN_UbF7BYVaxVVyBqnd_uBmShakiQ5dGnDQYRC6Vq-nJH45WVSdCSTmA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fcor2-1.fna&_nc_gid=6Jo5E4XpnzYlKCUU-Ygw0g&_nc_ss=7a32e&oh=00_Af3XOT4kpZZ49q4TU0l6rbcqerEB20m_PAIlHgcoFgHatw&oe=69EC394D");
+    url("/images/de-botanas.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -431,7 +431,7 @@ button:disabled {
 .restaurant-card--delmon {
   background-image:
     linear-gradient(180deg, rgba(18, 14, 12, 0.14), rgba(18, 14, 12, 0.82)),
-    url("https://instagram.fcor2-1.fna.fbcdn.net/v/t51.75761-15/491444318_18320154820206823_6351349520449708416_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=MzYxNTY0ODg2NzE0NTkyNjEyMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM0NS5zZHIuQzMifQ%3D%3D&_nc_ohc=EfzLDxtGThwQ7kNvwHsnAOl&_nc_oc=AdoZXS0n1qeL-0plZE2A6XvlxGgEE_Fe_TloJ9l5XHW5mSMVAC5MKe0lkJCU_mStKTo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fcor2-1.fna&_nc_gid=Kmne01tSL2DYksDqvZUjig&_nc_ss=7a32e&oh=00_Af3YL845Hm1jcxejLdUTK2tn5w-pZwrOXsLgfOLU8v51Ug&oe=69EC3D51");
+    url("/images/del-mon.jpg");
   background-position: center;
   background-size: cover;
 }
