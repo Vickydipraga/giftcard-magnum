@@ -1,5 +1,5 @@
 const { sendJson } = require("../lib/http");
-const { RESTAURANTS, getWhatsappNumber, loadEnvFile, loadMeta } = require("../lib/vouchers");
+const { getPersistenceMode, loadEnvFile, loadMeta } = require("../lib/vouchers");
 
 module.exports = async function handler(req, res) {
   loadEnvFile();
@@ -10,12 +10,13 @@ module.exports = async function handler(req, res) {
   }
 
   const meta = loadMeta();
+  const persistenceMode = getPersistenceMode();
 
   sendJson(res, 200, {
-    amount: meta.amount,
+    ok: true,
+    persistenceMode,
+    readyForProduction: persistenceMode !== "missing-production-store",
     validFrom: meta.validFrom,
-    validTo: meta.validTo,
-    restaurants: RESTAURANTS,
-    whatsappNumber: getWhatsappNumber()
+    validTo: meta.validTo
   });
 };

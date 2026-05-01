@@ -1,5 +1,5 @@
 const { readJsonBody, sendJson } = require("../../lib/http");
-const { loadData, loadEnvFile, normalizeCode, publicVoucher } = require("../../lib/vouchers");
+const { findVoucherByCode, loadEnvFile, normalizeCode, publicVoucher } = require("../../lib/vouchers");
 
 module.exports = async function handler(req, res) {
   loadEnvFile();
@@ -12,8 +12,7 @@ module.exports = async function handler(req, res) {
   try {
     const body = await readJsonBody(req);
     const code = normalizeCode(body.code);
-    const data = await loadData();
-    const voucher = data.vouchers.find((item) => item.code === code);
+    const { meta, voucher } = await findVoucherByCode(code);
 
     if (!voucher) {
       sendJson(res, 404, {
@@ -27,14 +26,14 @@ module.exports = async function handler(req, res) {
       sendJson(res, 409, {
         ok: false,
         message: "Este voucher ya fue canjeado o esta inactivo.",
-        voucher: publicVoucher(voucher, data.meta)
+        voucher: publicVoucher(voucher, meta)
       });
       return;
     }
 
     sendJson(res, 200, {
       ok: true,
-      voucher: publicVoucher(voucher, data.meta)
+      voucher: publicVoucher(voucher, meta)
     });
   } catch (error) {
     sendJson(res, 400, {

@@ -1,13 +1,13 @@
 const { readJsonBody, sendJson } = require("../../lib/http");
 const {
   RESTAURANTS,
+  findVoucherByCode,
   getTodayIso,
   isWithinValidity,
-  loadData,
   loadEnvFile,
+  markVoucherRedeemed,
   normalizeCode,
-  publicVoucher,
-  saveData
+  publicVoucher
 } = require("../../lib/vouchers");
 
 module.exports = async function handler(req, res) {
@@ -22,8 +22,7 @@ module.exports = async function handler(req, res) {
     const body = await readJsonBody(req);
     const code = normalizeCode(body.code);
     const restaurantKey = String(body.restaurant || "").trim();
-    const data = await loadData();
-    const voucher = data.vouchers.find((item) => item.code === code);
+    const { meta, voucher } = await findVoucherByCode(code);
 
     if (!voucher) {
       sendJson(res, 404, {
@@ -45,31 +44,27 @@ module.exports = async function handler(req, res) {
       sendJson(res, 409, {
         ok: false,
         message: "Este voucher ya fue canjeado o esta inactivo.",
-        voucher: publicVoucher(voucher, data.meta)
+        voucher: publicVoucher(voucher, meta)
       });
       return;
     }
 
     const today = getTodayIso();
 
-    if (!isWithinValidity(today, data.meta.validFrom, data.meta.validTo)) {
+    if (!isWithinValidity(today, meta.validFrom, meta.validTo)) {
       sendJson(res, 403, {
         ok: false,
-        message: `Este voucher solo puede canjearse del ${data.meta.validFrom} al ${data.meta.validTo}.`
+        message: `Este voucher solo puede canjearse del ${meta.validFrom} al ${meta.validTo}.`
       });
       return;
     }
 
-    voucher.status = "redeemed";
-    voucher.redeemedAt = new Date().toISOString();
-    voucher.redeemedRestaurant = restaurantKey;
-
-    await saveData(data);
+    const redeemedResult = await markVoucherRedeemed(code, restaurantKey);
 
     sendJson(res, 200, {
       ok: true,
       message: "Voucher canjeado con exito.",
-      voucher: publicVoucher(voucher, data.meta),
+      voucher: publicVoucher(redeemedResult.voucher, meta),
       notification: {
         sent: false,
         reason: "manual_whatsapp_redirect"

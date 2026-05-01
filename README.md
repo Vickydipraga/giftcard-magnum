@@ -1,57 +1,69 @@
 # Voucher Magnum
 
-Web simple para validar y canjear vouchers con codigo unico.
+Web de vouchers con codigo unico, seleccion de restaurante, redireccion a WhatsApp y bloqueo real del voucher despues del canje.
 
-## Incluye
+## Arquitectura
 
-- Validacion de codigo unico
-- Seleccion entre `De Botanas` y `Del Mon`
-- Flyer visual de consumicion por `$60.000`
-- Canje de una sola vez
-- Desactivacion automatica del voucher luego del canje
-- Notificacion por WhatsApp mediante Twilio
-- Vigencia del `2026-04-20` al `2026-06-30`
+El sistema ahora esta separado en 2 partes:
 
-## Como usar
+- `data/vouchers.json`: lista base de vouchers
+- store de canjes: guarda solo que codigos ya fueron usados
 
-1. Configura las variables del archivo `.env.example` en tu entorno si quieres aviso por WhatsApp.
-2. Ejecuta `node server.js`
-3. Abre `http://localhost:3000`
+Eso evita volver a escribir `vouchers.json` en produccion y elimina los errores de filesystem de solo lectura en Vercel.
 
-## Despliegue en Vercel
+## Produccion
 
-El proyecto ya queda listo para desplegar en Vercel con archivos estaticos desde `public/` y funciones serverless en `api/`.
+En Vercel el proyecto necesita una persistencia real para guardar canjes. Esta version soporta:
 
-### Variables necesarias en Vercel
+- `REDIS_URL`
+- `REDIS_REST_URL` + `REDIS_REST_TOKEN`
+- `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`
+- `STORAGE_REDIS_URL`
+- `STORAGE_URL`
+- `KV_REST_API_URL` + `KV_REST_API_TOKEN`
+
+Si no hay una de esas opciones configurada, el canje no debe publicarse a produccion.
+
+## Variables importantes
 
 - `PUBLIC_WHATSAPP_NUMBER=5493513578562`
-- `KV_REST_API_URL=...`
-- `KV_REST_API_TOKEN=...`
+- una opcion de persistencia de la lista anterior
 
-### Importante
+## Endpoints
 
-En Vercel los vouchers no deben guardarse en disco porque el filesystem no es persistente. Por eso la version de produccion usa `Vercel KV` cuando detecta `KV_REST_API_URL` y `KV_REST_API_TOKEN`.
+- `GET /api/health`
+- `GET /api/meta`
+- `POST /api/vouchers/check`
+- `POST /api/vouchers/redeem`
 
-### Flujo recomendado
+`/api/health` devuelve:
 
-1. Crea el proyecto en Vercel conectando este repositorio.
-2. Agrega una base `Vercel KV` al proyecto.
-3. Copia las variables `KV_REST_API_URL` y `KV_REST_API_TOKEN` a los Environment Variables del proyecto.
-4. Agrega `PUBLIC_WHATSAPP_NUMBER=5493513578562`.
-5. Haz el deploy.
+- `persistenceMode`
+- `readyForProduction`
 
-La primera vez que corra en produccion, el sistema sembrara automaticamente los vouchers desde [data/vouchers.json](/F:/GiftCard_Magnum/data/vouchers.json) hacia KV.
-
-## Datos
-
-Los vouchers viven en [data/vouchers.json](/F:/GiftCard_Magnum/data/vouchers.json).
-
-## Crear mas vouchers
-
-Ejecuta:
+## Desarrollo local
 
 ```bash
-node scripts/generate-vouchers.js 20
+node server.js
 ```
 
-Eso agrega 20 vouchers nuevos al archivo de datos.
+En local, si no configuras Redis o KV, los canjes se guardan en:
+
+- [F:\GiftCard_Magnum\data\redemptions.json](/F:/GiftCard_Magnum/data/redemptions.json)
+
+## Flujo correcto
+
+1. El cliente elige restaurante.
+2. Toca `Canjear`.
+3. Ingresa codigo.
+4. `Validar` revisa si existe y si ya fue usado.
+5. `Confirmar canje` marca el voucher como usado.
+6. Se abre WhatsApp.
+7. Un segundo intento con el mismo codigo devuelve que ya fue canjeado.
+
+## Archivos clave
+
+- [F:\GiftCard_Magnum\lib\vouchers.js](/F:/GiftCard_Magnum/lib/vouchers.js)
+- [F:\GiftCard_Magnum\api\vouchers\check.js](/F:/GiftCard_Magnum/api/vouchers/check.js)
+- [F:\GiftCard_Magnum\api\vouchers\redeem.js](/F:/GiftCard_Magnum/api/vouchers/redeem.js)
+- [F:\GiftCard_Magnum\public\app.js](/F:/GiftCard_Magnum/public/app.js)
